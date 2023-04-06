@@ -2,6 +2,7 @@ import arcade as arc
 from arcade.pymunk_physics_engine import PymunkPhysicsEngine
 import Globals
 from Player import BasicPlayer
+from Ball import Ball
 
 
 def new_area(game):
@@ -44,7 +45,6 @@ def area_pymunk(game):
     floor = arc.SpriteSolidColor(Globals.SCREEN_WIDTH, 25, arc.color.GREEN)
     floor.center_x = Globals.SCREEN_WIDTH / 2
     game.scene.add_sprite("world", floor)
-    game.physics_engine.add_sprite(floor, body_type=1, friction=Globals.F_FRICTION)
 
     # generate first goal
     # goal post
@@ -70,4 +70,14 @@ def area_pymunk(game):
     game.scene.add_sprite("world", goal1b)
     game.scene.add_sprite("world", goal2a)
     game.scene.add_sprite("world", goal2b)
+
+    for obj in game.scene["world"]:
+        game.physics_engine.add_sprite(obj, body_type=1, friction=Globals.F_FRICTION)
+
+    # add in ball
+    ball = Ball()
+    ball.center_y = 200
+    ball.center_x = Globals.SCREEN_WIDTH / 2
+    game.scene.add_sprite("ball", ball)
+    game.physics_engine.add_sprite(ball, max_velocity=10000, elasticity=1, mass=.5, gravity=(0, 200))
 
