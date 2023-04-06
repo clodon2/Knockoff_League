@@ -79,5 +79,5 @@ def area_pymunk(game):
     ball.center_y = 200
     ball.center_x = Globals.SCREEN_WIDTH / 2
     game.scene.add_sprite("ball", ball)
-    game.physics_engine.add_sprite(ball, max_velocity=10000, elasticity=1, mass=.5, gravity=(0, 200))
+    game.physics_engine.add_sprite(ball, max_velocity=10000, elasticity=1, mass=.5, gravity=(0, -200))
 
